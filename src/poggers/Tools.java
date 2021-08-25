@@ -5,7 +5,10 @@
  */
 package poggers;
 
-public class ParImpar {
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
+public class Tools {
 
     public static void main(String args[]) {
         int[] numeros = new int[5];
@@ -33,5 +36,20 @@ public class ParImpar {
         
 //        System.out.println(pares + " são pares");
 //        System.out.println(impares + " são ímpares");
+    }
+    
+    public static String formataValor(double valor, boolean sifrao){
+        try {
+            DecimalFormat format = new DecimalFormat("#,###,###,###.00");
+            format.setRoundingMode(RoundingMode.DOWN);
+            if (sifrao) {
+                return "R$ " + format.format(valor);
+            } else {
+                return format.format(valor);
+            }
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            return "";
+        }
     }
 }
